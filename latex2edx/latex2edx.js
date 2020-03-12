@@ -41,9 +41,20 @@ function hideshownocheck(object) {
       newclass = arrowclass.replace('up', 'down');
       $(arrow).attr('class', newclass);
   } else {
-      $(stuff).slideDown('slow');
+      $(stuff).slideDown('slow',rerenderMathJax());
       $(text).html('<a href="javascript: {return false;}">Hide</a>');
       newclass = arrowclass.replace('down', 'up');
       $(arrow).attr('class', newclass);
   }
+}
+
+function rerenderMathJax() {
+    try{
+        if (window.MathJax){
+            MathJax.Hub.Queue(["Rerender",MathJax.Hub,".hideshowcontent"]);
+            console.log('here it comes')
+        }
+    }catch (e) {
+        console.log(e)
+    }
 }
